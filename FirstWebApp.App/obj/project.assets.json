@@ -1743,24 +1743,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tsuzu\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\FirstWebApp.App.csproj",
+      "projectUniqueName": "C:\\Users\\user\\RiderProjects\\Praktyki.02.2023\\FirstWebApp.App\\FirstWebApp.App.csproj",
       "projectName": "FirstWebApp.App",
-      "projectPath": "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\FirstWebApp.App.csproj",
-      "packagesPath": "C:\\Users\\Tsuzu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\obj\\",
+      "projectPath": "C:\\Users\\user\\RiderProjects\\Praktyki.02.2023\\FirstWebApp.App\\FirstWebApp.App.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\user\\RiderProjects\\Praktyki.02.2023\\FirstWebApp.App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Tsuzu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
