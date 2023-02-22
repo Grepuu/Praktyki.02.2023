@@ -1,5 +1,6 @@
 using System.Text;
 using ForestApp.Data;
+using ForestApp.Repositories;
 using ForestApp.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -16,10 +17,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 /*** Services ***/
 builder.Services.AddScoped<TokenService, TokenService>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
-/*** User Service ***/
+/*** Identity Services ***/
 builder.Services
-    .AddIdentityCore<IdentityUser>(options =>
+    .AddIdentity<IdentityUser, IdentityRole>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
         options.User.RequireUniqueEmail = true;
