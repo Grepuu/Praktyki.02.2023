@@ -1,0 +1,54 @@
+﻿@model FirstWebApp.App.Models.AnimalEntity
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>AnimalEntity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdAnimal" />
+            <div class="form-group">
+                <label asp-for="AnimalDateAdded" class="control-label"></label>
+                <input asp-for="AnimalDateAdded" class="form-control" />
+                <span asp-validation-for="AnimalDateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalName" class="control-label"></label>
+                <input asp-for="AnimalName" class="form-control" />
+                <span asp-validation-for="AnimalName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalDescription" class="control-label"></label>
+                <input asp-for="AnimalDescription" class="form-control" />
+                <span asp-validation-for="AnimalDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfIndividuals" class="control-label"></label>
+                <input asp-for="NumberOfIndividuals" class="form-control" />
+                <span asp-validation-for="NumberOfIndividuals" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Endangered" /> @Html.DisplayNameFor(model => model.Endangered)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

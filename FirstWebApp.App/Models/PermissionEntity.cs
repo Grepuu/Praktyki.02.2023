@@ -5,12 +5,12 @@ namespace FirstWebApp.App.Models
     public class PermissionEntity
     {
         [Key]
-        public int IdTree { get; set; }
-        public DateTime TreeDateAdded { get; set; }
-        public string? TreeName { get; set; }
-        public string? TreeDescription { get; set; } 
-        public string? LeafDescription { get; set; }
-        public float MaxHeight { get; set; }
+        public int IdPermission { get; set; }
+        public DateTime PermissionDateAdded { get; set; }
+        public string? PermissionName { get; set; }
+        public string? PermissionDescription { get; set; }
+        public DateTime SinceWhen { get; set; }
+        public DateTime UntilWhen { get; set; }
 
     }
 }
