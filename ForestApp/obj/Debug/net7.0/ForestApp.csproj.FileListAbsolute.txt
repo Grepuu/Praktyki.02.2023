@@ -47,7 +47,6 @@ C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\obj\Debug\net7.0\refint\F
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\obj\Debug\net7.0\ForestApp.pdb
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\obj\Debug\net7.0\ForestApp.genruntimeconfig.cache
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\obj\Debug\net7.0\ref\ForestApp.dll
-C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\app.db
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\Microsoft.Data.Sqlite.dll
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Sqlite.dll
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
@@ -78,3 +77,4 @@ C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\runtimes
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\user\RiderProjects\Praktyki.02.2023\ForestApp\bin\Debug\net7.0\app.db

@@ -1,23 +1,21 @@
 ﻿using ForestApp.Controllers.Requests;
 using ForestApp.Data;
 using ForestApp.Services;
-using Microsoft.AspNetCore.Identity;
+using ForestApp.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForestApp.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-public class UserController : Controller
+[Route("api/[controller]")]
+public class AuthController : Controller
 {
     private readonly ApplicationDbContext _dbContext;
-    private readonly TokenService _tokenService;
     private readonly IUserService _userService;
 
-    public UserController(ApplicationDbContext dbContext, TokenService tokenService, IUserService userService)
+    public AuthController(ApplicationDbContext dbContext, IUserService userService)
     {
         _dbContext = dbContext;
-        _tokenService = tokenService;
         _userService = userService;
     }
 
@@ -42,12 +40,12 @@ public class UserController : Controller
         }
 
         request.Password = "";
-        return CreatedAtAction(nameof(Register), new { email = request.Email }, request);
+        return Ok(request);
     }
 
     [HttpPost]
     [Route("login")]
-    public async Task<ActionResult<AuthResponse>> Authenticate([FromBody] AuthRequest request)
+    public async Task<IActionResult> Authenticate([FromBody] AuthRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -70,7 +68,7 @@ public class UserController : Controller
         if (userInDb == null) return Unauthorized();
         if (userInDb.UserName == null || userInDb.Email == null) return BadRequest("Username or Email in db is null");
         
-        var accessToken = _tokenService.CreateToken(userInDb);
+        var accessToken = TokenUtils.CreateToken(userInDb);
         await _dbContext.SaveChangesAsync();
         return Ok(new AuthResponse
         {

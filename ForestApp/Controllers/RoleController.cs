@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ForestApp.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class RoleController : ControllerBase
 {
     private readonly IRoleService _roleService;
