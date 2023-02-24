@@ -1,0 +1,52 @@
+﻿@model FirstWebApp.App.Models.TreeEntity
+
+@{
+    ViewData["Title"] = "Dodaj Drzewo";
+}
+
+<h1>Dodaj Drzewo</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TreeDateAdded" class="control-label"></label>
+                <input asp-for="TreeDateAdded" class="form-control" />
+                <span asp-validation-for="TreeDateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TreeName" class="control-label"></label>
+                <input asp-for="TreeName" class="form-control" />
+                <span asp-validation-for="TreeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TreeDescription" class="control-label"></label>
+                <input asp-for="TreeDescription" class="form-control" />
+                <span asp-validation-for="TreeDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeafDescription" class="control-label"></label>
+                <input asp-for="LeafDescription" class="form-control" />
+                <span asp-validation-for="LeafDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxHeight" class="control-label"></label>
+                <input asp-for="MaxHeight" class="form-control" />
+                <span asp-validation-for="MaxHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Powrót do listy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FirstWebApp.App.Models.TreeEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TreeDateAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TreeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TreeDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeafDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxHeight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TreeDateAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TreeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TreeDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeafDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxHeight)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdTree">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdTree">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdTree">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

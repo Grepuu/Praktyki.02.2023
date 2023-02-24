@@ -10,88 +10,88 @@ using FirstWebApp.App.Models;
 
 namespace FirstWebApp.App.Controllers
 {
-    [Route("Zwierzeta")]
-    public class AnimalEntitiesController : Controller
+    [Route("Drzewa")]
+    public class TreeEntitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AnimalEntitiesController(ApplicationDbContext context)
+        public TreeEntitiesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: /Zwierzeta/Lista
+        // GET: /Drzewa/Lista
         [Route("Lista")]
         public async Task<IActionResult> Index()
         {
-              return _context.AnimalEntity != null ? 
-                          View(await _context.AnimalEntity.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.AnimalEntity'  is null.");
+              return _context.TreeEntity != null ? 
+                          View(await _context.TreeEntity.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.TreeEntity'  is null.");
         }
 
-        // GET: /Zwierzeta/Detale/5
+        // GET: /Drzewa/Detale/5
         [Route("Detale")]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.AnimalEntity == null)
+            if (id == null || _context.TreeEntity == null)
             {
                 return NotFound();
             }
 
-            var animalEntity = await _context.AnimalEntity
-                .FirstOrDefaultAsync(m => m.IdAnimal == id);
-            if (animalEntity == null)
+            var treeEntity = await _context.TreeEntity
+                .FirstOrDefaultAsync(m => m.IdTree == id);
+            if (treeEntity == null)
             {
                 return NotFound();
             }
 
-            return View(animalEntity);
+            return View(treeEntity);
         }
 
-        // GET: /Zwierzeta/Dodaj
+        // GET: /Drzewa/Dodaj
         [Route("Dodaj")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: /Zwierzeta/Dodaj
+        // POST: /Drzewa/Dodaj
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdAnimal,AnimalName,AnimalDescription,NumberOfIndividuals,Endangered")] AnimalEntity animalEntity)
+        public async Task<IActionResult> Create([Bind("IdTree,TreeDateAdded,TreeName,TreeDescription,LeafDescription,MaxHeight")] TreeEntity treeEntity)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(animalEntity);
+                _context.Add(treeEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(animalEntity);
+            return View(treeEntity);
         }
 
-        // GET: /Zwierzeta/Edytuj/5
+        // GET: /Drzewa/Edytuj/5
         [Route("Edytuj")]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.AnimalEntity == null)
+            if (id == null || _context.TreeEntity == null)
             {
                 return NotFound();
             }
 
-            var animalEntity = await _context.AnimalEntity.FindAsync(id);
-            if (animalEntity == null)
+            var treeEntity = await _context.TreeEntity.FindAsync(id);
+            if (treeEntity == null)
             {
                 return NotFound();
             }
-            return View(animalEntity);
+            return View(treeEntity);
         }
 
-        // POST: /AnimalEntities/Edit/5
+        // POST: /Drzewa/Edytuj/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdAnimal,AnimalDateAdded,AnimalName,AnimalDescription,NumberOfIndividuals,Endangered")] AnimalEntity animalEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("IdTree,TreeDateAdded,TreeName,TreeDescription,LeafDescription,MaxHeight")] TreeEntity treeEntity)
         {
-            if (id != animalEntity.IdAnimal)
+            if (id != treeEntity.IdTree)
             {
                 return NotFound();
             }
@@ -100,12 +100,12 @@ namespace FirstWebApp.App.Controllers
             {
                 try
                 {
-                    _context.Update(animalEntity);
+                    _context.Update(treeEntity);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AnimalEntityExists(animalEntity.IdAnimal))
+                    if (!TreeEntityExists(treeEntity.IdTree))
                     {
                         return NotFound();
                     }
@@ -116,50 +116,50 @@ namespace FirstWebApp.App.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(animalEntity);
+            return View(treeEntity);
         }
 
-        // GET: /Zwierzeta/Usun/5
+        // GET: /Drzewa/Usun/5
         [Route("Usun")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.AnimalEntity == null)
+            if (id == null || _context.TreeEntity == null)
             {
                 return NotFound();
             }
 
-            var animalEntity = await _context.AnimalEntity
-                .FirstOrDefaultAsync(m => m.IdAnimal == id);
-            if (animalEntity == null)
+            var treeEntity = await _context.TreeEntity
+                .FirstOrDefaultAsync(m => m.IdTree == id);
+            if (treeEntity == null)
             {
                 return NotFound();
             }
 
-            return View(animalEntity);
+            return View(treeEntity);
         }
 
-        // POST: /Zwierzeta/Usun/5
+        // POST: /Drzewa/Usun/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.AnimalEntity == null)
+            if (_context.TreeEntity == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.AnimalEntity'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.TreeEntity'  is null.");
             }
-            var animalEntity = await _context.AnimalEntity.FindAsync(id);
-            if (animalEntity != null)
+            var treeEntity = await _context.TreeEntity.FindAsync(id);
+            if (treeEntity != null)
             {
-                _context.AnimalEntity.Remove(animalEntity);
+                _context.TreeEntity.Remove(treeEntity);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AnimalEntityExists(int id)
+        private bool TreeEntityExists(int id)
         {
-          return (_context.AnimalEntity?.Any(e => e.IdAnimal == id)).GetValueOrDefault();
+          return (_context.TreeEntity?.Any(e => e.IdTree == id)).GetValueOrDefault();
         }
     }
 }

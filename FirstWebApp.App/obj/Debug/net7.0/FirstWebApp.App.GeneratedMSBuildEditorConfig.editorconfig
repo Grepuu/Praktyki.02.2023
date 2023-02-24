@@ -68,6 +68,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Oskar/Praktyki.02.2023/FirstWebApp.App/Views/TreeEntities/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZUVudGl0aWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Oskar/Praktyki.02.2023/FirstWebApp.App/Views/TreeEntities/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZUVudGl0aWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Oskar/Praktyki.02.2023/FirstWebApp.App/Views/TreeEntities/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZUVudGl0aWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Oskar/Praktyki.02.2023/FirstWebApp.App/Views/TreeEntities/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZUVudGl0aWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Oskar/Praktyki.02.2023/FirstWebApp.App/Views/TreeEntities/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlZUVudGl0aWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Oskar/Praktyki.02.2023/FirstWebApp.App/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
