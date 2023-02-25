@@ -8,6 +8,7 @@ public interface IForestRepository
 {
     Task AddForest(ForestEntity forest);
     Task RemoveForest(int forestId);
+    Task UpdateForest(ForestEntity forest);
     Task<ForestEntity?> GetForestById(int forestId);
     Task<List<ForestEntity>> GetAllForests();
 }
@@ -38,9 +39,18 @@ public class ForestRepository : IForestRepository
         }
     }
 
+    public async Task UpdateForest(ForestEntity forest)
+    {
+        _dbContext.Forests.Update(forest);
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task<ForestEntity?> GetForestById(int forestId)
     {
-        return await _dbContext.Forests.FindAsync(forestId);
+        return await _dbContext.Forests
+            .Include(f => f.Trees)
+            .Include(f => f.Animals)
+            .FirstOrDefaultAsync(f => f.Id == forestId);
     }
 
     public async Task<List<ForestEntity>> GetAllForests()

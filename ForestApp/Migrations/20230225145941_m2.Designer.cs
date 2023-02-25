@@ -3,6 +3,7 @@ using System;
 using ForestApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,45 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ForestApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230225145941_m2")]
+    partial class m2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
-
-            modelBuilder.Entity("ForestApp.Models.Animal.AnimalEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ForestId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("HerdSize")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEndangered")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ForestId");
-
-                    b.ToTable("Animals");
-                });
 
             modelBuilder.Entity("ForestApp.Models.Forest.ForestEntity", b =>
                 {
@@ -303,17 +273,6 @@ namespace ForestApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ForestApp.Models.Animal.AnimalEntity", b =>
-                {
-                    b.HasOne("ForestApp.Models.Forest.ForestEntity", "Forest")
-                        .WithMany("Animals")
-                        .HasForeignKey("ForestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Forest");
-                });
-
             modelBuilder.Entity("ForestApp.Models.Forest.ForestEntity", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Owner")
@@ -389,8 +348,6 @@ namespace ForestApp.Migrations
 
             modelBuilder.Entity("ForestApp.Models.Forest.ForestEntity", b =>
                 {
-                    b.Navigation("Animals");
-
                     b.Navigation("Trees");
                 });
 #pragma warning restore 612, 618

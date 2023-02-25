@@ -20,6 +20,10 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IForestService, ForestService>();
 builder.Services.AddScoped<IForestRepository, ForestRepository>();
+builder.Services.AddScoped<ITreeService, TreeService>();
+builder.Services.AddScoped<ITreeRepository, TreeRepository>();
+builder.Services.AddScoped<IAnimalService, AnimalService>();
+builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
 
 /*** Identity Services ***/
 builder.Services

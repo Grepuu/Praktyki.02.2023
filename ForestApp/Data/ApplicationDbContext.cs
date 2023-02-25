@@ -1,4 +1,6 @@
-﻿using ForestApp.Models.Forest;
+﻿using ForestApp.Models.Animal;
+using ForestApp.Models.Forest;
+using ForestApp.Models.Tree;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +9,8 @@ namespace ForestApp.Data;
 public class ApplicationDbContext : IdentityDbContext
 {
     public DbSet<ForestEntity> Forests { get; set; } = null!;
+    public DbSet<TreeEntity> Trees { get; set; } = null!;
+    public DbSet<AnimalEntity> Animals { get; set; } = null!;
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)

@@ -1,4 +1,6 @@
-﻿using ForestApp.Models.Forest;
+﻿using ForestApp.Models.Animal;
+using ForestApp.Models.Forest;
+using ForestApp.Models.Tree;
 using ForestApp.Repositories;
 
 namespace ForestApp.Services;
@@ -10,11 +12,14 @@ public interface IForestService
     Task<ForestEntity?> GetForestById(int forestId);
     Task<List<ForestEntity>> GetAllForests();
     Task<ForestEntity?> GetForestForUser(string userId, int forestId);
+    Task AddTreeToForest(int forestId, TreeEntity tree);
+    Task AddAnimalToForest(int forestId, AnimalEntity animal);
 }
 
 public class ForestService : IForestService
 {
     private readonly IForestRepository _forestRepository;
+    
     private readonly IUserService _userService;
 
     public ForestService(IForestRepository forestRepository, IUserService userService)
@@ -52,5 +57,31 @@ public class ForestService : IForestService
         }
 
         return forest;
+    }
+
+    public async Task AddTreeToForest(int forestId, TreeEntity tree)
+    {
+        var forest = await _forestRepository.GetForestById(forestId);
+        if (forest == null)
+        {
+            throw new ArgumentException("Forest with given id does not exist.", nameof(forestId));
+        }
+
+        tree.Forest = forest;
+        forest.Trees.Add(tree);
+        await _forestRepository.UpdateForest(forest);
+    }
+
+    public async Task AddAnimalToForest(int forestId, AnimalEntity animal)
+    {
+        var forest = await _forestRepository.GetForestById(forestId);
+        if (forest == null)
+        {
+            throw new ArgumentException("Forest with given id does not exist.", nameof(forestId));
+        }
+
+        animal.Forest = forest;
+        forest.Animals.Add(animal);
+        await _forestRepository.UpdateForest(forest);
     }
 }
