@@ -1,26 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\FirstWebApp.App.csproj": {}
+    "C:\\Users\\Aro\\Documents\\GitHub\\Praktyki.02.2023\\FirstWebApp.App\\FirstWebApp.App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\FirstWebApp.App.csproj": {
+    "C:\\Users\\Aro\\Documents\\GitHub\\Praktyki.02.2023\\FirstWebApp.App\\FirstWebApp.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\FirstWebApp.App.csproj",
+        "projectUniqueName": "C:\\Users\\Aro\\Documents\\GitHub\\Praktyki.02.2023\\FirstWebApp.App\\FirstWebApp.App.csproj",
         "projectName": "FirstWebApp.App",
-        "projectPath": "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\FirstWebApp.App.csproj",
-        "packagesPath": "C:\\Users\\Tsuzu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tsuzu\\Repositories\\FirstWebApp\\FirstWebApp.App\\obj\\",
+        "projectPath": "C:\\Users\\Aro\\Documents\\GitHub\\Praktyki.02.2023\\FirstWebApp.App\\FirstWebApp.App.csproj",
+        "packagesPath": "C:\\Users\\Aro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Aro\\Documents\\GitHub\\Praktyki.02.2023\\FirstWebApp.App\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Tsuzu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Aro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
         },
         "frameworks": {
           "net7.0": {
@@ -78,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
