@@ -6,9 +6,9 @@ public class AnimalEntity
 {
     [Key]
     public int Id { get; set; }
-    public DateTime DataDodania { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public int NumberInHerd { get; set; }
+    public DateTime DataDodania { get; set; } = DateTime.Now;
+    public string Name { get; set; } = null!;
+    public string Description { get; set; } = null!;
+    public int NumberInHerd { get; set; } = null!;
     public bool IfEndangered { get; set; }
 }
