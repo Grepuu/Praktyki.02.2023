@@ -21,7 +21,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /*background-color: rgb(57, 60, 62);*/
+    background-color: #2f3031;
+    color:white;
 }
 
 footer {
@@ -45,3 +46,12 @@ footer {
     font-size: 23px;
 }
 
+.linkedit {
+    text-decoration: none; 
+    color:#43d16e;
+}
+
+.linkedit:hover {
+    text-decoration: none;
+    color: #43d16e;
+}

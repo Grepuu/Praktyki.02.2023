@@ -4,8 +4,13 @@
     ViewData["Title"] = "Usuń";
 }
 
-<h1>Usunięto Pomyślnie</h1>
-<div>
-    <hr />
-        <a asp-action="Index">Powrót do Listy</a>
+<br />
+<br />
+<h1>Wpis Usunięto Pomyślnie</h1>
+<br />
+
+<div class="form-group">
+    <form asp-action="Index">
+        <input type="submit" value="Powrót do Listy" class="btn btn-primary" />
+    </form>
 </div>

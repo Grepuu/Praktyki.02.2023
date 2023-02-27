@@ -3,32 +3,36 @@
 @{
     ViewData["Title"] = "Index";
 }
+<br/><br/>
+<h1>Lista Zwierząt w Bazie Danych</h1>
+<br/><hr />
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="table" style="color:white;">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdAnimal)
+                @*@Html.DisplayNameFor(model => model.IdAnimal)*@
+                Id
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnimalDateAdded)
+                @*@Html.DisplayNameFor(model => model.AnimalDateAdded)*@
+                Data Dodania
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnimalName)
+                @*@Html.DisplayNameFor(model => model.AnimalName)*@
+                Nazwa Zwierzęcia
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnimalDescription)
+                @*@Html.DisplayNameFor(model => model.AnimalDescription)*@
+                Opis
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumberOfIndividuals)
+                @*@Html.DisplayNameFor(model => model.NumberOfIndividuals)*@
+                Liczba Osobników
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Endangered)
+                @*@Html.DisplayNameFor(model => model.Endangered)*@
+                Zagrożone
             </th>
             <th></th>
         </tr>
@@ -55,11 +59,14 @@
                 @Html.DisplayFor(modelItem => item.Endangered)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdAnimal">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdAnimal">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdAnimal">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdAnimal" class="linkedit">Edytuj</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdAnimal" class="linkedit">Szczegóły</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdAnimal" class="linkedit">Usuń</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="linkedit">Stwórz Wpis</a>
+</p>

@@ -84,10 +84,17 @@ namespace FirstWebApp.App.Controllers
                         [Route("DodajPotwierdzone")]
                         public IActionResult CreateConfirmed(AnimalEntity animalEntity)
                         {
-
-                            var animal = new AnimalEntity()
+                            if (AnimalEntityExists(animalEntity.IdAnimal))
                             {
-                                                    
+                                //return NotFound("Wpis o takim ID już istnieje");
+                                return RedirectToAction(nameof(Create));
+                            }
+                            else
+                            {
+
+            
+                            var animal = new AnimalEntity()
+                            {                                                  
                                 IdAnimal = animalEntity.IdAnimal,
                                 AnimalDateAdded = animalEntity.AnimalDateAdded,
                                 AnimalName = animalEntity.AnimalName,
@@ -106,7 +113,7 @@ namespace FirstWebApp.App.Controllers
                             _context.AnimalEntity.Add(animal);
                             _context.SaveChanges();
 
- 
+                            }
 
                             return RedirectToAction(nameof(Index));
                         }
@@ -172,13 +179,13 @@ namespace FirstWebApp.App.Controllers
 
                                 if (id == null || _context.AnimalEntity == null)
                                 {
-                                    return NotFound("Tutaj1");
+                                    return NotFound("Error1");
                                 }
 
                                 var animalEntity = await _context.AnimalEntity.FindAsync(id);
                                 if (animalEntity == null)
                                 {
-                                    return NotFound("Tutaj2");
+                                    return NotFound("Error2");
                                 }
 
                                 return View(animalEntity);
@@ -198,7 +205,7 @@ namespace FirstWebApp.App.Controllers
                                     {
                                         if (!AnimalEntityExists(animalEntity.IdAnimal))
                                         {
-                                            return NotFound("Tutaj4");
+                                            return NotFound("Error3");
                                         }
                                         else
                                         {
@@ -253,7 +260,7 @@ namespace FirstWebApp.App.Controllers
 
         // --------------------------------
 
-        [Route("Usun/{id:int}")]
+                    [Route("Usun/{id:int}")]
                         public IActionResult Delete(int id)
                         {
                             AnimalEntity animal = new AnimalEntity() { IdAnimal = id };

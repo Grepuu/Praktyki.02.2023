@@ -1,52 +1,73 @@
 ﻿@model FirstWebApp.App.Models.AnimalEntity
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj";
 }
+<br />
+<br />
+<h1>Edytuj Wpis ID @Model.IdAnimal</h1>
+<h4>Zwierzęta</h4>
+<br />
 
-<h1>Edit</h1>
-
-<h4>AnimalEntity</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="EditConfirmed">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdAnimal" />
+
             <div class="form-group">
-                <label asp-for="AnimalDateAdded" class="control-label"></label>
+                <label asp-for="AnimalDateAdded" class="control-label">Data Dodania</label>
                 <input asp-for="AnimalDateAdded" class="form-control" />
                 <span asp-validation-for="AnimalDateAdded" class="text-danger"></span>
             </div>
+
+            <br />
+
             <div class="form-group">
-                <label asp-for="AnimalName" class="control-label"></label>
+                <label asp-for="AnimalName" class="control-label">Nazwa Zwierzęcia</label>
                 <input asp-for="AnimalName" class="form-control" />
                 <span asp-validation-for="AnimalName" class="text-danger"></span>
             </div>
+
+            <br />
+
             <div class="form-group">
-                <label asp-for="AnimalDescription" class="control-label"></label>
+                <label asp-for="AnimalDescription" class="control-label">Opis</label>
                 <input asp-for="AnimalDescription" class="form-control" />
                 <span asp-validation-for="AnimalDescription" class="text-danger"></span>
             </div>
+
+            <br />
+
             <div class="form-group">
-                <label asp-for="NumberOfIndividuals" class="control-label"></label>
+                <label asp-for="NumberOfIndividuals" class="control-label">Liczba Osobników</label>
                 <input asp-for="NumberOfIndividuals" class="form-control" />
                 <span asp-validation-for="NumberOfIndividuals" class="text-danger"></span>
             </div>
+
+            <br />
+
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Endangered" /> @Html.DisplayNameFor(model => model.Endangered)
+                    <input class="form-check-input" asp-for="Endangered" /> Zagrożone
                 </label>
             </div>
+
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-success" />
             </div>
+
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+<br/>
+<div class="form-group">
+    <form asp-action="Index">
+        <input type="submit" value="Powrót" class="btn btn-primary" />
+    </form>
 </div>
 
 @section Scripts {
