@@ -10,7 +10,7 @@ using FirstWebApp.App.Models;
 
 namespace FirstWebApp.App.Controllers
 {
-    [Route("Animals")]
+    [Route("Animal")]
     public class AnimalController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,7 +20,7 @@ namespace FirstWebApp.App.Controllers
             _context = context;
         }
 
-        // GET: /Animals/List
+        // GET: /Animal/List
         [Route("List")]
         public async Task<IActionResult> Index()
         {
@@ -29,8 +29,8 @@ namespace FirstWebApp.App.Controllers
                           Problem("Entity set 'ApplicationDbContext.AnimalEntity'  is null.");
         }
 
-        // GET: /Animals/Details/5
-        [Route("Detale")]
+        // GET: /Animal/Details/5
+        [Route("Details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.AnimalEntity == null)
@@ -39,7 +39,7 @@ namespace FirstWebApp.App.Controllers
             }
 
             var animalEntity = await _context.AnimalEntity
-                .FirstOrDefaultAsync(m => m.IdAnimal == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (animalEntity == null)
             {
                 return NotFound();
@@ -48,115 +48,104 @@ namespace FirstWebApp.App.Controllers
             return View(animalEntity);
         }
 
-        // GET: /Animals/Add
+        // GET: /Animal/Add
         [Route("Add")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: /Animals/Add
-        [HttpPost]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,NumberInHerd,IfEndangered")] AnimalEntity animalEntity)
+        // POST: /Animal/Add
+        [Route("AddConfirmed")]
+        public IActionResult CreateConfirmed(AnimalEntity animalEntity)
         {
-            if (ModelState.IsValid)
+            if (AnimalEntityExists(animalEntity.Id))
             {
-                _context.Add(animalEntity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return NotFound("Wpis o takim ID ju¿ istnieje");
+                return RedirectToAction(nameof(Create));
             }
-            return View(animalEntity);
-        }
-
-        // GET: /Animals/Edit/5
-        [Route("Edit")]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.AnimalEntity == null)
+            else
             {
-                return NotFound();
-            }
 
-            var animalEntity = await _context.AnimalEntity.FindAsync(id);
-            if (animalEntity == null)
-            {
-                return NotFound();
-            }
-            return View(animalEntity);
-        }
 
-        // POST: /AnimalEntities/Edit/5
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,NumberInHerd,IfEndangered")] AnimalEntity animalEntity)
-        {
-            if (id != animalEntity.IdAnimal)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                var animal = new AnimalEntity()
                 {
-                    _context.Update(animalEntity);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AnimalEntityExists(animalEntity.IdAnimal))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(animalEntity);
-        }
+                    Id = animalEntity.Id,
+                    DateAdded = animalEntity.DateAdded,
+                    Name = animalEntity.Name,
+                    Description = animalEntity.Description,
+                    NumberInHerd = animalEntity.NumberInHerd,
+                    Endangered = animalEntity.Endangered
+                };
 
-        // GET: /Animals/Delete/5
-        [Route("Delete")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.AnimalEntity == null)
-            {
-                return NotFound();
+                _context.AnimalEntity.Add(animal);
+                _context.SaveChanges();
+
             }
 
-            var animalEntity = await _context.AnimalEntity
-                .FirstOrDefaultAsync(m => m.IdAnimal == id);
-            if (animalEntity == null)
-            {
-                return NotFound();
-            }
-
-            return View(animalEntity);
-        }
-
-        // POST: /Animals/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.AnimalEntity == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.AnimalEntity'  is null.");
-            }
-            var animalEntity = await _context.AnimalEntity.FindAsync(id);
-            if (animalEntity != null)
-            {
-                _context.AnimalEntity.Remove(animalEntity);
-            }
-            
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: /Animal/Edit/5
+        [Route("Edit/{id:int}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+
+            if (id == null || _context.AnimalEntity == null)
+            {
+                return NotFound("Error1");
+            }
+
+            var animalEntity = await _context.AnimalEntity.FindAsync(id);
+            if (animalEntity == null)
+            {
+                return NotFound("Error2");
+            }
+
+            return View(animalEntity);
+        }
+
+        // POST: /Animals/Edit/5
+        [Route("EditConfirmed")]
+        public async Task<IActionResult> EditConfirmed(int id, AnimalEntity animalEntity)
+        {
+
+            try
+            {
+                _context.Update(animalEntity);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AnimalEntityExists(animalEntity.Id))
+                {
+                    return NotFound("Error3");
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        // POST: /Animals/Delete/5
+        [Route("Delete/{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            AnimalEntity animal = new AnimalEntity() { Id = id };
+
+            _context.AnimalEntity.Remove(animal);
+            _context.SaveChanges();
+
+            return View();
+        }
+
+
+
         private bool AnimalEntityExists(int id)
         {
-          return (_context.AnimalEntity?.Any(e => e.IdAnimal == id)).GetValueOrDefault();
+            return (_context.AnimalEntity?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

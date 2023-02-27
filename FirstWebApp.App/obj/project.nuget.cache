@@ -1,53 +1,104 @@
 {
   "version": 2,
-  "dgSpecHash": "rk0JfzAzbp6agWsbTYaQJGxS+9X/FaohUjGzvNdNtE71DgbEKCRSGxGFrh824KMAjEMuboDIGPiVD+zed1dW7g==",
+  "dgSpecHash": "V0ZvqA0uNPTjqMYO54kAVLU3+9/MtIYObAWKbwgXh+Cv01HxVYq5qMtUuvxQKo/LMVgbiEuROVoKRY6szUafjA==",
   "success": false,
-  "projectFilePath": "C:\\Users\\Aro\\Documents\\GitHub\\Praktyki.02.2023\\FirstWebApp.App\\FirstWebApp.App.csproj",
+  "projectFilePath": "C:\\Users\\Aro\\Desktop\\FinalProject\\FirstWebApp.App\\FirstWebApp.App.csproj",
   "expectedPackageFiles": [],
   "logs": [
     {
       "code": "NU1101",
       "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.Identity.EntityFrameworkCore. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "message": "Nie można znaleźć pakietu Microsoft.AspNetCore.Identity.EntityFrameworkCore. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
       "libraryId": "Microsoft.AspNetCore.Identity.EntityFrameworkCore",
       "targetGraphs": [
-        "net7.0"
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win7-x86",
+        "net5.0",
+        "net5.0/win7-x86"
       ]
     },
     {
       "code": "NU1101",
       "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.Identity.UI. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
-      "libraryId": "Microsoft.AspNetCore.Identity.UI",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.EntityFrameworkCore.Sqlite. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "message": "Nie można znaleźć pakietu Microsoft.EntityFrameworkCore.Sqlite. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
       "libraryId": "Microsoft.EntityFrameworkCore.Sqlite",
       "targetGraphs": [
-        "net7.0"
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win7-x86",
+        "net5.0",
+        "net5.0/win7-x86"
       ]
     },
     {
       "code": "NU1101",
       "level": "Error",
-      "message": "Unable to find package Microsoft.EntityFrameworkCore.Tools. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "message": "Nie można znaleźć pakietu Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win7-x86",
+        "net5.0",
+        "net5.0/win7-x86"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Nie można znaleźć pakietu Microsoft.AspNetCore.Identity.UI. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.AspNetCore.Identity.UI",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win7-x86",
+        "net5.0",
+        "net5.0/win7-x86"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Nie można znaleźć pakietu Microsoft.EntityFrameworkCore.Tools. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
       "libraryId": "Microsoft.EntityFrameworkCore.Tools",
       "targetGraphs": [
-        "net7.0"
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win7-x86",
+        "net5.0",
+        "net5.0/win7-x86"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Nie można znaleźć pakietu Microsoft.WindowsDesktop.App.Ref. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.WindowsDesktop.App.Ref",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Nie można znaleźć pakietu Microsoft.NETCore.App.Ref. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.NETCore.App.Ref",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Nie można znaleźć pakietu Microsoft.AspNetCore.App.Ref. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.AspNetCore.App.Ref",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Nie można znaleźć pakietu Microsoft.NETCore.App.Host.win-x64. W źródłach nie istnieją pakiety z tym identyfikatorem: Microsoft Visual Studio Offline Packages",
+      "libraryId": "Microsoft.NETCore.App.Host.win-x64",
+      "targetGraphs": [
+        "net5.0"
       ]
     }
   ]

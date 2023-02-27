@@ -9,6 +9,6 @@ public class AnimalEntity
     public DateTime DataDodania { get; set; } = DateTime.Now;
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
-    public int NumberInHerd { get; set; } = null!;
+    public int NumberInHerd { get; set; }
     public bool IfEndangered { get; set; }
 }
