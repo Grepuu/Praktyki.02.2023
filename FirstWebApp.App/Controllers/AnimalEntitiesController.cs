@@ -112,97 +112,148 @@ namespace FirstWebApp.App.Controllers
                         }
 
 
-        // GET: /Zwierzeta/Edytuj/5
-        [Route("Edytuj/{id:int}")]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.AnimalEntity == null)
-            {
-                return NotFound();
-            }
-
-            var animalEntity = await _context.AnimalEntity.FindAsync(id);
-            if (animalEntity == null)
-            {
-                return NotFound();
-            }
-            return View(animalEntity);
-        }
-
-        // POST: /AnimalEntities/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdAnimal,AnimalDateAdded,AnimalName,AnimalDescription,NumberOfIndividuals,Endangered")] AnimalEntity animalEntity)
-        {
-            if (id != animalEntity.IdAnimal)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+        /*        // GET: /Zwierzeta/Edytuj/5
+                [Route("Edytuj/{id:int}")]
+                public async Task<IActionResult> Edit(int? id)
                 {
-                    _context.Update(animalEntity);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AnimalEntityExists(animalEntity.IdAnimal))
+                    if (id == null || _context.AnimalEntity == null)
                     {
                         return NotFound();
                     }
-                    else
+
+                    var animalEntity = await _context.AnimalEntity.FindAsync(id);
+                    if (animalEntity == null)
                     {
-                        throw;
+                        return NotFound();
                     }
+                    return View(animalEntity);
                 }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(animalEntity);
-        }
 
-        // GET: /Zwierzeta/Usun/5
-/*        [Route("Usun/{id:int}")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.AnimalEntity == null)
-            {
-                return NotFound();
-            }
+                // POST: /AnimalEntities/Edit/5
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public async Task<IActionResult> Edit(int id, [Bind("IdAnimal,AnimalDateAdded,AnimalName,AnimalDescription,NumberOfIndividuals,Endangered")] AnimalEntity animalEntity)
+                {
+                    if (id != animalEntity.IdAnimal)
+                    {
+                        return NotFound();
+                    }
 
-            var animalEntity = await _context.AnimalEntity.FirstOrDefaultAsync(m => m.IdAnimal == id);
-            if (animalEntity == null)
-            {
-                return NotFound();
-            }
-           // _context.AnimalEntity.Remove(animalEntity);
-            return View(animalEntity);
-        }
+                    if (ModelState.IsValid)
+                    {
+                        try
+                        {
+                            _context.Update(animalEntity);
+                            await _context.SaveChangesAsync();
+                        }
+                        catch (DbUpdateConcurrencyException)
+                        {
+                            if (!AnimalEntityExists(animalEntity.IdAnimal))
+                            {
+                                return NotFound();
+                            }
+                            else
+                            {
+                                throw;
+                            }
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(animalEntity);
+                }*/
 
-        // POST: /Zwierzeta/Usun/5
-        [HttpDelete, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.AnimalEntity == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.AnimalEntity'  is null.");
-            }
-            var animalEntity = await _context.AnimalEntity.FindAsync(id);
-            if (animalEntity != null)
-            {
-                _context.AnimalEntity.Remove(animalEntity);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }*/
+        // --------------------------------
+
+
+                            // GET: /Zwierzeta/Edytuj/5
+                            [Route("Edytuj/{id:int}")]
+                            public async Task<IActionResult> Edit(int id)
+                            {
+
+                                if (id == null || _context.AnimalEntity == null)
+                                {
+                                    return NotFound("Tutaj1");
+                                }
+
+                                var animalEntity = await _context.AnimalEntity.FindAsync(id);
+                                if (animalEntity == null)
+                                {
+                                    return NotFound("Tutaj2");
+                                }
+
+                                return View(animalEntity);
+                            }
+
+                            // POST: /AnimalEntities/Edit/5
+                            [Route("EditConfirmed")]
+                            public async Task<IActionResult> EditConfirmed(int id, AnimalEntity animalEntity)
+                            {
+
+                                    try
+                                    {
+                                        _context.Update(animalEntity);
+                                        await _context.SaveChangesAsync();
+                                    }
+                                    catch (DbUpdateConcurrencyException)
+                                    {
+                                        if (!AnimalEntityExists(animalEntity.IdAnimal))
+                                        {
+                                            return NotFound("Tutaj4");
+                                        }
+                                        else
+                                        {
+                                            throw;
+                                        }
+                                    }
+                                    return RedirectToAction(nameof(Index));
+                            }
+
+
 
 
         // --------------------------------
 
-                        [Route("Usun/{id:int}")]
+        // GET: /Zwierzeta/Usun/5
+        /*        [Route("Usun/{id:int}")]
+                public async Task<IActionResult> Delete(int? id)
+                {
+                    if (id == null || _context.AnimalEntity == null)
+                    {
+                        return NotFound();
+                    }
+
+                    var animalEntity = await _context.AnimalEntity.FirstOrDefaultAsync(m => m.IdAnimal == id);
+                    if (animalEntity == null)
+                    {
+                        return NotFound();
+                    }
+                   // _context.AnimalEntity.Remove(animalEntity);
+                    return View(animalEntity);
+                }
+
+                // POST: /Zwierzeta/Usun/5
+                [HttpDelete, ActionName("Delete")]
+                [ValidateAntiForgeryToken]
+                public async Task<IActionResult> DeleteConfirmed(int id)
+                {
+                    if (_context.AnimalEntity == null)
+                    {
+                        return Problem("Entity set 'ApplicationDbContext.AnimalEntity'  is null.");
+                    }
+                    var animalEntity = await _context.AnimalEntity.FindAsync(id);
+                    if (animalEntity != null)
+                    {
+                        _context.AnimalEntity.Remove(animalEntity);
+                    }
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }*/
+
+
+        // --------------------------------
+
+        [Route("Usun/{id:int}")]
                         public IActionResult Delete(int id)
                         {
                             AnimalEntity animal = new AnimalEntity() { IdAnimal = id };
