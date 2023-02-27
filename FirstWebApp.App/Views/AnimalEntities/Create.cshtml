@@ -9,35 +9,47 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateConfirmed">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="IdAnimal" class="control-label"></label>
+                <input asp-for="IdAnimal" class="form-control" id="IdAnimal" name="IdAnimal" />
+                <span asp-validation-for="IdAnimal" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="AnimalDateAdded" class="control-label"></label>
-                <input asp-for="AnimalDateAdded" class="form-control" />
+                <input asp-for="AnimalDateAdded" class="form-control" id="AnimalDateAdded" name="AnimalDateAdded" />
                 <span asp-validation-for="AnimalDateAdded" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="AnimalName" class="control-label"></label>
-                <input asp-for="AnimalName" class="form-control" />
+                <input asp-for="AnimalName" class="form-control" id="AnimalName" name="AnimalName" />
                 <span asp-validation-for="AnimalName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="AnimalDescription" class="control-label"></label>
-                <input asp-for="AnimalDescription" class="form-control" />
+                <input asp-for="AnimalDescription" class="form-control" id="AnimalDescription" name="AnimalDescription" />
                 <span asp-validation-for="AnimalDescription" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="NumberOfIndividuals" class="control-label"></label>
-                <input asp-for="NumberOfIndividuals" class="form-control" />
+                <input asp-for="NumberOfIndividuals" class="form-control" id="NumberOfIndividuals" name="NumberOfIndividuals" />
                 <span asp-validation-for="NumberOfIndividuals" class="text-danger"></span>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Endangered" /> @Html.DisplayNameFor(model => model.Endangered)
+                    <input class="form-check-input" asp-for="Endangered" id="Endangered" name="Endangered" /> @Html.DisplayNameFor(model => model.Endangered)
                 </label>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Stwórz" class="btn btn-primary" />
             </div>
         </form>
     </div>

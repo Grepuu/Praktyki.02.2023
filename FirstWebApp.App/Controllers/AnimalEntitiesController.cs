@@ -10,6 +10,7 @@ using FirstWebApp.App.Models;
 
 namespace FirstWebApp.App.Controllers
 {
+   // [ApiController]
     [Route("Zwierzeta")]
     public class AnimalEntitiesController : Controller
     {
@@ -30,7 +31,7 @@ namespace FirstWebApp.App.Controllers
         }
 
         // GET: /Zwierzeta/Detale/5
-        [Route("Detale")]
+        [Route("Detale/{id:int}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.AnimalEntity == null)
@@ -38,8 +39,7 @@ namespace FirstWebApp.App.Controllers
                 return NotFound();
             }
 
-            var animalEntity = await _context.AnimalEntity
-                .FirstOrDefaultAsync(m => m.IdAnimal == id);
+            var animalEntity = await _context.AnimalEntity.FirstOrDefaultAsync(m => m.IdAnimal == id);
             if (animalEntity == null)
             {
                 return NotFound();
@@ -48,29 +48,72 @@ namespace FirstWebApp.App.Controllers
             return View(animalEntity);
         }
 
-        // GET: /Zwierzeta/Dodaj
-        [Route("Dodaj")]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        /*
+                // GET: /Zwierzeta/Dodaj
+                [Route("Dodaj")]
+                public IActionResult Create()
+                {
+                    return View();
+                }
 
-        // POST: /Zwierzeta/Dodaj
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdAnimal,AnimalName,AnimalDescription,NumberOfIndividuals,Endangered")] AnimalEntity animalEntity)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(animalEntity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(animalEntity);
-        }
+                // POST: /Zwierzeta/Dodaj
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public async Task<IActionResult> Create([Bind("IdAnimal,AnimalName,AnimalDescription,NumberOfIndividuals,Endangered")] AnimalEntity animalEntity)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _context.Add(animalEntity);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(animalEntity);
+                }
+        */
+
+        // -----------------------------------
+
+                        [Route("Dodaj")]
+                        public IActionResult Create()
+                        {
+                            return View();
+                        }
+
+
+                        // POST: /Zwierzeta/Dodaj
+                        [Route("DodajPotwierdzone")]
+                        public IActionResult CreateConfirmed(AnimalEntity animalEntity)
+                        {
+
+                            var animal = new AnimalEntity()
+                            {
+                                                    
+                                IdAnimal = animalEntity.IdAnimal,
+                                AnimalDateAdded = animalEntity.AnimalDateAdded,
+                                AnimalName = animalEntity.AnimalName,
+                                AnimalDescription = animalEntity.AnimalDescription,
+                                NumberOfIndividuals = animalEntity.NumberOfIndividuals,
+                                Endangered = animalEntity.Endangered
+
+                                /*IdAnimal = 5,
+                                AnimalDateAdded = DateTime.Now.AddDays(-10),
+                                AnimalName = "Jenotek3",
+                                AnimalDescription = "czarno-biały",
+                                NumberOfIndividuals = 5,
+                                Endangered = false*/
+                            };
+
+                            _context.AnimalEntity.Add(animal);
+                            _context.SaveChanges();
+
+ 
+
+                            return RedirectToAction(nameof(Index));
+                        }
+
 
         // GET: /Zwierzeta/Edytuj/5
-        [Route("Edytuj")]
+        [Route("Edytuj/{id:int}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.AnimalEntity == null)
@@ -120,7 +163,7 @@ namespace FirstWebApp.App.Controllers
         }
 
         // GET: /Zwierzeta/Usun/5
-        [Route("Usun")]
+/*        [Route("Usun/{id:int}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.AnimalEntity == null)
@@ -128,18 +171,17 @@ namespace FirstWebApp.App.Controllers
                 return NotFound();
             }
 
-            var animalEntity = await _context.AnimalEntity
-                .FirstOrDefaultAsync(m => m.IdAnimal == id);
+            var animalEntity = await _context.AnimalEntity.FirstOrDefaultAsync(m => m.IdAnimal == id);
             if (animalEntity == null)
             {
                 return NotFound();
             }
-
+           // _context.AnimalEntity.Remove(animalEntity);
             return View(animalEntity);
         }
 
         // POST: /Zwierzeta/Usun/5
-        [HttpPost, ActionName("Delete")]
+        [HttpDelete, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -155,7 +197,37 @@ namespace FirstWebApp.App.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
+        }*/
+
+
+        // --------------------------------
+
+                        [Route("Usun/{id:int}")]
+                        public IActionResult Delete(int id)
+                        {
+                            AnimalEntity animal = new AnimalEntity() { IdAnimal = id };
+
+                            _context.AnimalEntity.Remove(animal);
+                            _context.SaveChanges();
+
+                            return View();
+                        }
+
+
+                        /*[Route("DeleteConfirmed/{id:int}")]
+                        public IActionResult DeleteConfirmed(int id)
+                        {
+                            AnimalEntity animal = new AnimalEntity() { IdAnimal = id };
+
+
+                            _context.AnimalEntity.Remove(animal);
+                            _context.SaveChanges();
+
+                            return RedirectToAction(nameof(Index));
+                        }*/
+
+
+        // --------------------------------
 
         private bool AnimalEntityExists(int id)
         {
