@@ -6,9 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ForestApp.Utils;
 
-public class TokenUtils
+public static class TokenUtils
     {
-        private const int ExpirationMinutes = 10;
+        private const int ExpirationMinutes = 1000;
         
         public static string CreateToken(IdentityUser user)
         {
@@ -38,7 +38,6 @@ public class TokenUtils
             {
                 var claims = new List<Claim>
                 {
-                    // new Claim(JwtRegisteredClaimNames.Sub, "TokenForTheApiWithAuth"),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)),
                     new Claim(ClaimTypes.NameIdentifier, user.Id),

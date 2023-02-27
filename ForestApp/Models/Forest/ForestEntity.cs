@@ -1,4 +1,5 @@
 ﻿using ForestApp.Models.Animal;
+using ForestApp.Models.Permission;
 using ForestApp.Models.Tree;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,4 +15,5 @@ public class ForestEntity : IForest
     
     public ICollection<TreeEntity> Trees { get; set; } = new List<TreeEntity>();
     public ICollection<AnimalEntity> Animals { get; set; } = new List<AnimalEntity>();
+    public ICollection<PermissionEntity> Permissions { get; set; } = new List<PermissionEntity>();
 }

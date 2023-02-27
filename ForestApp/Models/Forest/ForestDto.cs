@@ -1,4 +1,5 @@
 ﻿using ForestApp.Models.Animal;
+using ForestApp.Models.Permission;
 using ForestApp.Models.Tree;
 
 namespace ForestApp.Models.Forest;
@@ -12,4 +13,5 @@ public class ForestDto
 
     public List<TreeDto> Trees { get; set; }
     public List<AnimalDto> Animals { get; set; }
+    public List<PermissionDto> Permissions { get; set; }
 }

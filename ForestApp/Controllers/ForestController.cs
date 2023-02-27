@@ -2,6 +2,7 @@
 using ForestApp.Controllers.Requests;
 using ForestApp.Models.Animal;
 using ForestApp.Models.Forest;
+using ForestApp.Models.Permission;
 using ForestApp.Models.Tree;
 using ForestApp.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -106,7 +107,16 @@ public class ForestController : Controller
             IsEndangered = animal.IsEndangered,
             HerdSize = animal.HerdSize,
             ForestId = forest.Id,
-
+        }).ToList();
+        
+        var permissionsDto = forest.Permissions.Select(permission => new PermissionDto()
+        {
+            Id = permission.Id,
+            DateAdded = permission.DateAdded,
+            Description = permission.Description,
+            DateFrom = permission.DateFrom,
+            DateTo = permission.DateTo,
+            ForestId = forest.Id,
         }).ToList();
         
         return Ok(new ForestDto()
@@ -116,7 +126,8 @@ public class ForestController : Controller
             Name = forest.Name,
             OwnerId = forest.OwnerId,
             Trees = treesDto,
-            Animals = animalsDto
+            Animals = animalsDto,
+            Permissions = permissionsDto
         });
     }
     
@@ -180,6 +191,38 @@ public class ForestController : Controller
         };
 
         await _forestService.AddAnimalToForest(forestId, animal);
+
+        return Ok();
+    }
+    
+    [HttpPost("{forestId:int}/add-permission")]
+    [Authorize]
+    public async Task<IActionResult> AddPermissionToForest(int forestId, [FromBody] CreatePermissionDto createPermissionDto)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        var forest = await _forestService.GetForestById(forestId);
+
+        if (forest == null)
+        {
+            return NotFound("Forest not found");
+        }
+
+        if (forest.OwnerId != userId)
+        {
+            return Forbid("You are not the owner of this forest");
+        }
+
+        var permission = new PermissionEntity()
+        {
+            Title = createPermissionDto.Title,
+            Description = createPermissionDto.Description,
+            DateFrom = createPermissionDto.DateFrom,
+            DateTo = createPermissionDto.DateTo,
+            Forest = forest
+        };
+
+        await _forestService.AddPermissionToForest(forestId, permission);
 
         return Ok();
     }

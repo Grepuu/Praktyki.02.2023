@@ -18,7 +18,7 @@ public class TreeController : Controller
         _treeService = treeService;
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteTree(int id)
     {
         var tree = await _treeService.GetTreeById(id);
@@ -36,7 +36,7 @@ public class TreeController : Controller
         return Ok();
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> GetTree(int id)
     {
         try

@@ -28,7 +28,31 @@ public class AuthController : Controller
             return BadRequest(ModelState);
         }
 
-        var result = await _userService.CreateUser(request.Email, request.Password);
+        var result = await _userService.CreateUser(request.Email, request.Password, "ROLE_USER");
+
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(error.Code, error.Description);
+            }
+            return BadRequest(ModelState);
+        }
+
+        request.Password = "";
+        return Ok(request);
+    }
+    
+    [HttpPost]
+    [Route("register-admin")]
+    public async Task<ActionResult> RegisterAdmin(RegisterRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var result = await _userService.CreateUser(request.Email, request.Password, "ROLE_ADMIN");
 
         if (!result.Succeeded)
         {

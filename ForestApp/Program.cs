@@ -24,6 +24,8 @@ builder.Services.AddScoped<ITreeService, TreeService>();
 builder.Services.AddScoped<ITreeRepository, TreeRepository>();
 builder.Services.AddScoped<IAnimalService, AnimalService>();
 builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
+builder.Services.AddScoped<IPermissionService, PermissionService>();
+builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
 
 /*** Identity Services ***/
 builder.Services
@@ -105,6 +107,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policyBuilder =>
+{
+    policyBuilder.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+});
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,5 +1,6 @@
 ﻿using ForestApp.Models.Animal;
 using ForestApp.Models.Forest;
+using ForestApp.Models.Permission;
 using ForestApp.Models.Tree;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<ForestEntity> Forests { get; set; } = null!;
     public DbSet<TreeEntity> Trees { get; set; } = null!;
     public DbSet<AnimalEntity> Animals { get; set; } = null!;
+    public DbSet<PermissionEntity> Permissions { get; set; } = null!;
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)

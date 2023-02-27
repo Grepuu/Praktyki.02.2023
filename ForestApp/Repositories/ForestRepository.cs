@@ -49,6 +49,7 @@ public class ForestRepository : IForestRepository
     {
         return await _dbContext.Forests
             .Include(f => f.Trees)
+            .Include(f => f.Permissions)
             .Include(f => f.Animals)
             .FirstOrDefaultAsync(f => f.Id == forestId);
     }

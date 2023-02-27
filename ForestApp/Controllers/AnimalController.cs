@@ -1,8 +1,9 @@
-﻿namespace ForestApp.Controllers;
+﻿using ForestApp.Models.Animal;
+using ForestApp.Services;
+
+namespace ForestApp.Controllers;
 
 using System.Security.Claims;
-using ForestApp.Models.Animal;
-using ForestApp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,7 @@ public class AnimalController : Controller
         _animalService = animalService;
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteAnimal(int id)
     {
         var animal = await _animalService.GetAnimalById(id);
@@ -36,7 +37,7 @@ public class AnimalController : Controller
         return Ok();
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> GetAnimal(int id)
     {
         try
@@ -69,7 +70,7 @@ public class AnimalController : Controller
         }
     }
     
-    [HttpPatch("{id}/isEndangered")]
+    [HttpPatch("{id:int}/isEndangered")]
     public async Task<IActionResult> ToggleEndangered(int id)
     {
         var animal = await _animalService.GetAnimalById(id);

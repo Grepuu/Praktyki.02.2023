@@ -1,5 +1,6 @@
 ﻿using ForestApp.Models.Animal;
 using ForestApp.Models.Forest;
+using ForestApp.Models.Permission;
 using ForestApp.Models.Tree;
 using ForestApp.Repositories;
 
@@ -14,18 +15,16 @@ public interface IForestService
     Task<ForestEntity?> GetForestForUser(string userId, int forestId);
     Task AddTreeToForest(int forestId, TreeEntity tree);
     Task AddAnimalToForest(int forestId, AnimalEntity animal);
+    Task AddPermissionToForest(int forestId, PermissionEntity permission);
 }
 
 public class ForestService : IForestService
 {
     private readonly IForestRepository _forestRepository;
     
-    private readonly IUserService _userService;
-
-    public ForestService(IForestRepository forestRepository, IUserService userService)
+    public ForestService(IForestRepository forestRepository)
     {
         _forestRepository = forestRepository;
-        _userService = userService;
     }
 
     public async Task AddForest(ForestEntity forest)
@@ -82,6 +81,19 @@ public class ForestService : IForestService
 
         animal.Forest = forest;
         forest.Animals.Add(animal);
+        await _forestRepository.UpdateForest(forest);
+    }
+    
+    public async Task AddPermissionToForest(int forestId, PermissionEntity permission)
+    {
+        var forest = await _forestRepository.GetForestById(forestId);
+        if (forest == null)
+        {
+            throw new ArgumentException("Forest with given id does not exist.", nameof(forestId));
+        }
+
+        permission.Forest = forest;
+        forest.Permissions.Add(permission);
         await _forestRepository.UpdateForest(forest);
     }
 }
