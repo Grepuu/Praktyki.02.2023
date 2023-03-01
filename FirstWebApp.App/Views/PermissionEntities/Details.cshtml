@@ -1,0 +1,64 @@
+﻿@model FirstWebApp.App.Models.PermissionEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br/><br/>
+<h1>Szczegóły Wpisu ID @Model.IdPermission</h1>
+<h4>Pozwolenia</h4>
+<br/>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Data Dodania:
+            @*@Html.DisplayNameFor(model => model.PermissionDateAdded)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PermissionDateAdded)
+        </dd>
+        <dt class = "col-sm-2">
+            Nazwa Pozwolenia:
+            @*@Html.DisplayNameFor(model => model.PermissionName)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PermissionName)
+        </dd>
+        <dt class = "col-sm-2">
+            Opis Pozwolenia:
+            @*@Html.DisplayNameFor(model => model.PermissionDescription)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PermissionDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            Od kiedy:
+            @*@Html.DisplayNameFor(model => model.SinceWhen)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SinceWhen)
+        </dd>
+        <dt class = "col-sm-2">
+            Do kiedy:
+            @*@Html.DisplayNameFor(model => model.UntilWhen)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UntilWhen)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <form>
+        <input asp-action="Edit" asp-route-id="@Model.IdPermission" type="submit" value="Edytuj" class="btn btn-primary" />
+    </form>
+
+    <br />
+
+    <form>
+        <input asp-action="Index" type="submit" value="Powrót do Listy" class="btn btn-primary" />
+    </form>
+
+</div>

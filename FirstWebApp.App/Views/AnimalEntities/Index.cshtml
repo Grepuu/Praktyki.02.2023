@@ -3,9 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-<br/><br/>
+<br/>
+<br/>
 <h1>Lista Zwierząt w Bazie Danych</h1>
-<br/><hr />
+<br/>
+<hr />
 
 <table class="table" style="color:white;">
     <thead>
@@ -59,14 +61,17 @@
                 @Html.DisplayFor(modelItem => item.Endangered)
             </td>
             <td>
+
                     <a asp-action="Edit" asp-route-id="@item.IdAnimal" class="linkedit">Edytuj</a> |
                     <a asp-action="Details" asp-route-id="@item.IdAnimal" class="linkedit">Szczegóły</a> |
                     <a asp-action="Delete" asp-route-id="@item.IdAnimal" class="linkedit">Usuń</a>
+
             </td>
         </tr>
 }
     </tbody>
 </table>
+
 <p>
     <a asp-action="Create" class="linkedit">Stwórz Wpis</a>
 </p>

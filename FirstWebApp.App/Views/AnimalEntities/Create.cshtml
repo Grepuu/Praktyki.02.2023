@@ -28,9 +28,9 @@
                 <label asp-for="AnimalDateAdded" class="control-label"> Data Dodania</label>
                 <input asp-for="AnimalDateAdded" class="form-control" id="AnimalDateAdded" name="AnimalDateAdded" />
                 <span asp-validation-for="AnimalDateAdded" class="text-danger"></span>
-            </div>*@
+            </div>
 
-            <br/>
+            <br/>*@
 
             <div class="form-group">
                 <label asp-for="AnimalName" class="control-label"> Nazwa Zwierzęcia</label>
@@ -63,13 +63,17 @@
             </div>
 
             <br/>
+
             <div class="form-group">
                 <input type="submit" value="Stwórz" class="btn btn-success" />
             </div>
+
         </form>
     </div>
 </div>
+
 <br/>
+
 <div class="form-group">
     <form asp-action="Index">
     <input type="submit" value="Powrót" class="btn btn-primary" />

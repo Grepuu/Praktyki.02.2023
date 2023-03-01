@@ -1,0 +1,82 @@
+﻿@model FirstWebApp.App.Models.PermissionEntity
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<br />
+<h1>Dodaj Wpis</h1>
+<h4>Drzewa</h4>
+<br />
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+@*            <div class="form-group">
+                <label asp-for="IdPermission" class="control-label"> Identyfikator Pozwolenia</label>
+                <input asp-for="IdPermission" class="form-control" />
+                <span asp-validation-for="IdPermission" class="text-danger"></span>
+            </div>*@
+
+@*            <div class="form-group">
+                <label asp-for="PermissionDateAdded" class="control-label">Data Dodania</label>
+                <input asp-for="PermissionDateAdded" class="form-control" />
+                <span asp-validation-for="PermissionDateAdded" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <label asp-for="PermissionName" class="control-label">Nazwa Pozwolenia</label>
+                <input asp-for="PermissionName" class="form-control" />
+                <span asp-validation-for="PermissionName" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <label asp-for="PermissionDescription" class="control-label">Opis Pozwolenia</label>
+                <input asp-for="PermissionDescription" class="form-control" />
+                <span asp-validation-for="PermissionDescription" class="text-danger"></span>
+            </div>
+
+            <br/>
+
+            <div class="form-group">
+                <label asp-for="SinceWhen" class="control-label">Od kiedy</label>
+                <input asp-for="SinceWhen" class="form-control" />
+                <span asp-validation-for="SinceWhen" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <label asp-for="UntilWhen" class="control-label">Do kiedy</label>
+                <input asp-for="UntilWhen" class="form-control" />
+                <span asp-validation-for="UntilWhen" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Stwórz" class="btn btn-success" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<br/>
+
+<div class="form-group">
+    <form asp-action="Index">
+        <input type="submit" value="Powrót" class="btn btn-primary" />
+    </form>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

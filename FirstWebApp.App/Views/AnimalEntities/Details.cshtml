@@ -12,35 +12,35 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            Data Dodania
+            Data Dodania:
             @*@Html.DisplayNameFor(model => model.AnimalDateAdded)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AnimalDateAdded)
         </dd>
         <dt class = "col-sm-2">
-            Nazwa Zwierzęcia
+            Nazwa Zwierzęcia:
             @*@Html.DisplayNameFor(model => model.AnimalName)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AnimalName)
         </dd>
         <dt class = "col-sm-2">
-            Opis
+            Opis:
             @*@Html.DisplayNameFor(model => model.AnimalDescription)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AnimalDescription)
         </dd>
         <dt class = "col-sm-2">
-            Liczba Osobników
+            Liczba Osobników:
             @*@Html.DisplayNameFor(model => model.NumberOfIndividuals)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NumberOfIndividuals)
         </dd>
         <dt class = "col-sm-2">
-            Zagrożone
+            Zagrożone:
             @*@Html.DisplayNameFor(model => model.Endangered)*@
         </dt>
         <dd class = "col-sm-10">
@@ -49,6 +49,15 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdAnimal" class="linkedit">Edytuj</a> |
-    <a asp-action="Index" class="linkedit">Powrót do Listy</a>
+
+    <form>
+        <input asp-action="Edit" asp-route-id="@Model?.IdAnimal" type="submit" value="Edytuj" class="btn btn-primary" />
+    </form>
+    
+    <br/>
+
+    <form>
+        <input asp-action="Index" type="submit" value="Powrót do Listy" class="btn btn-primary" />
+    </form>
+
 </div>

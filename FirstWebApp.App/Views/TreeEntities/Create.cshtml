@@ -4,54 +4,78 @@
     ViewData["Title"] = "Dodaj Drzewo";
 }
 
-<h1>Dodaj Drzewo</h1>
-
+<br />
+<br />
+<h1>Dodaj Wpis</h1>
+<h4>Drzewa</h4>
+<br />
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 @*            <div class="form-group">
-                <label asp-for="TreeDateAdded" class="control-label"></label>
-                <input asp-for="TreeDateAdded" class="form-control" />
-                <span asp-validation-for="TreeDateAdded" class="text-danger"></span>
+                <label asp-for="IdTree" class="control-label">Identyfikator Drzewa</label>
+                <input asp-for="IdTree" class="form-control" />
+                <span asp-validation-for="IdTree" class="text-danger"></span>
             </div>*@
 
+@*            <div class="form-group">
+                <label asp-for="TreeDateAdded" class="control-label">Data Dodania</label>
+                <input asp-for="TreeDateAdded" class="form-control" />
+                <span asp-validation-for="TreeDateAdded" class="text-danger"></span>
+            </div>
+
+            <br />*@
+
             <div class="form-group">
-                <label asp-for="TreeName" class="control-label"></label>
+                <label asp-for="TreeName" class="control-label"> Nazwa Drzewa</label>
                 <input asp-for="TreeName" class="form-control" />
                 <span asp-validation-for="TreeName" class="text-danger"></span>
             </div>
 
+            <br />
+
             <div class="form-group">
-                <label asp-for="TreeDescription" class="control-label"></label>
+                <label asp-for="TreeDescription" class="control-label"> Opis Drzewa</label>
                 <input asp-for="TreeDescription" class="form-control" />
                 <span asp-validation-for="TreeDescription" class="text-danger"></span>
             </div>
 
+            <br/>
+
             <div class="form-group">
-                <label asp-for="LeafDescription" class="control-label"></label>
+                <label asp-for="LeafDescription" class="control-label"> Opis Liścia</label>
                 <input asp-for="LeafDescription" class="form-control" />
                 <span asp-validation-for="LeafDescription" class="text-danger"></span>
             </div>
 
+            <br />
+
             <div class="form-group">
-                <label asp-for="MaxHeight" class="control-label"></label>
+                <label asp-for="MaxHeight" class="control-label"> Maksymalna Wysokość</label>
                 <input asp-for="MaxHeight" class="form-control" />
                 <span asp-validation-for="MaxHeight" class="text-danger"></span>
             </div>
 
+            <br/>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Stwórz" class="btn btn-success" />
             </div>
 
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Powrót do listy</a>
+<br/>
+
+<div class="form-group">
+    <form asp-action="Index">
+    <input type="submit" value="Powrót" class="btn btn-primary" />
+    </form>
 </div>
 
 @section Scripts {

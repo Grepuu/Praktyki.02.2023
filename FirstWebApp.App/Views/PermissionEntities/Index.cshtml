@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FirstWebApp.App.Models.PermissionEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<h1>Lista Pozwoleń w Bazie Danych</h1>
+<br />
+<hr />
+
+<table class="table" style="color:white;">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.IdPermission)*@
+                Id
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.PermissionDateAdded)*@
+                Data Dodania
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.PermissionName)*@
+                Nazwa Pozwolenia
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.PermissionDescription)*@
+                Opis Pozwolenia
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.SinceWhen)*@
+                Od kiedy
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.UntilWhen)*@
+                Do kiedy
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPermission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PermissionDateAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PermissionName)
+            </td>
+            <td style="max-width:440px;">
+                @Html.DisplayFor(modelItem => item.PermissionDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinceWhen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UntilWhen)
+            </td>
+            <td>
+
+                    <a asp-action="Edit" asp-route-id="@item.IdPermission" class="linkedit">Edytuj</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdPermission" class="linkedit">Szczegóły</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdPermission" class="linkedit">Usuń</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create" class="linkedit">Stwórz Wpis</a>
+</p>

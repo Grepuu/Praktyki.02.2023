@@ -1,41 +1,47 @@
 ﻿@model FirstWebApp.App.Models.TreeEntity
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły";
 }
-
-<h1>Details</h1>
+<br/><br/>
+<h1>Szczegóły Wpisu ID @Model.IdTree</h1>
+<h4>Drzewa</h4>
+<br/>
 
 <div>
-    <h4>TreeEntity</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TreeDateAdded)
+            Data Dodania:
+            @*@Html.DisplayNameFor(model => model.TreeDateAdded)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TreeDateAdded)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TreeName)
+            Nazwa Drzewa:
+            @*@Html.DisplayNameFor(model => model.TreeName)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TreeName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TreeDescription)
+            Opis Drzewa:
+            @*@Html.DisplayNameFor(model => model.TreeDescription)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TreeDescription)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LeafDescription)
+            Opis Liścia:
+            @*@Html.DisplayNameFor(model => model.LeafDescription)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LeafDescription)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaxHeight)
+            Maksymalna Wysokość:
+            @*@Html.DisplayNameFor(model => model.MaxHeight)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MaxHeight)
@@ -43,6 +49,15 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdTree">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+    <form>
+        <input asp-action="Edit" asp-route-id="@Model.IdTree" type="submit" value="Edytuj" class="btn btn-primary" />
+    </form>
+
+    <br />
+
+    <form>
+        <input asp-action="Index" type="submit" value="Powrót do Listy" class="btn btn-primary" />
+    </form>
+
 </div>

@@ -12,4 +12,5 @@ public class ApplicationDbContext : IdentityDbContext
     }
     public DbSet<FirstWebApp.App.Models.AnimalEntity> AnimalEntity { get; set; } = default!;
     public DbSet<FirstWebApp.App.Models.TreeEntity> TreeEntity { get; set; } = default!;
+    public DbSet<FirstWebApp.App.Models.PermissionEntity> PermissionEntity { get; set; } = default!;
 }

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Edytuj";
 }
+
 <br />
 <br />
 <h1>Edytuj Wpis ID @Model.IdAnimal</h1>
@@ -16,6 +17,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdAnimal" />
 
+              @*Modyfikacja Daty Dodania *@
+
 @*            <div class="form-group">
                 <label asp-for="AnimalDateAdded" class="control-label">Data Dodania</label>
                 <input asp-for="AnimalDateAdded" class="form-control" />
@@ -25,7 +28,7 @@
             <br />*@
 
             <div class="form-group">
-                <label asp-for="AnimalName" class="control-label">Nazwa Zwierzęcia</label>
+                <label asp-for="AnimalName" class="control-label">Nazwa Zwierzęcia:</label>
                 <input asp-for="AnimalName" class="form-control" />
                 <span asp-validation-for="AnimalName" class="text-danger"></span>
             </div>
@@ -33,7 +36,7 @@
             <br />
 
             <div class="form-group">
-                <label asp-for="AnimalDescription" class="control-label">Opis</label>
+                <label asp-for="AnimalDescription" class="control-label">Opis:</label>
                 <input asp-for="AnimalDescription" class="form-control" />
                 <span asp-validation-for="AnimalDescription" class="text-danger"></span>
             </div>
@@ -41,7 +44,7 @@
             <br />
 
             <div class="form-group">
-                <label asp-for="NumberOfIndividuals" class="control-label">Liczba Osobników</label>
+                <label asp-for="NumberOfIndividuals" class="control-label">Liczba Osobników:</label>
                 <input asp-for="NumberOfIndividuals" class="form-control" />
                 <span asp-validation-for="NumberOfIndividuals" class="text-danger"></span>
             </div>
@@ -50,7 +53,7 @@
 
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Endangered" /> Zagrożone
+                    <input class="form-check-input" asp-for="Endangered" /> Zagrożone:
                 </label>
             </div>
 
@@ -63,7 +66,9 @@
         </form>
     </div>
 </div>
+
 <br/>
+
 <div class="form-group">
     <form asp-action="Index">
         <input type="submit" value="Powrót" class="btn btn-primary" />
