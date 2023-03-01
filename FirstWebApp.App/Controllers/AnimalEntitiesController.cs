@@ -72,7 +72,7 @@ namespace FirstWebApp.App.Controllers
         */
 
         // -----------------------------------
-
+                        [HttpGet]
                         [Route("Dodaj")]
                         public IActionResult Create()
                         {
@@ -81,8 +81,9 @@ namespace FirstWebApp.App.Controllers
 
 
                         // POST: /Zwierzeta/Dodaj
-                        [Route("DodajPotwierdzone")]
-                        public IActionResult CreateConfirmed(AnimalEntity animalEntity)
+                        [HttpPost]
+                        [Route("Dodaj")]
+                        public IActionResult Create(AnimalEntity animalEntity)
                         {
                             if (AnimalEntityExists(animalEntity.IdAnimal))
                             {
@@ -95,8 +96,8 @@ namespace FirstWebApp.App.Controllers
             
                             var animal = new AnimalEntity()
                             {                                                  
-                                IdAnimal = animalEntity.IdAnimal,
-                                AnimalDateAdded = animalEntity.AnimalDateAdded,
+                                //IdAnimal = animalEntity.IdAnimal,
+                                AnimalDateAdded = DateTime.Now,
                                 AnimalName = animalEntity.AnimalName,
                                 AnimalDescription = animalEntity.AnimalDescription,
                                 NumberOfIndividuals = animalEntity.NumberOfIndividuals,
@@ -173,6 +174,7 @@ namespace FirstWebApp.App.Controllers
 
 
                             // GET: /Zwierzeta/Edytuj/5
+                            [HttpGet]
                             [Route("Edytuj/{id:int}")]
                             public async Task<IActionResult> Edit(int id)
                             {
@@ -192,8 +194,9 @@ namespace FirstWebApp.App.Controllers
                             }
 
                             // POST: /AnimalEntities/Edit/5
-                            [Route("EditConfirmed")]
-                            public async Task<IActionResult> EditConfirmed(int id, AnimalEntity animalEntity)
+                            [HttpPost]
+                            [Route("Edytuj/{id:int}")]
+                            public async Task<IActionResult> Edit(int id, AnimalEntity animalEntity)
                             {
 
                                     try
@@ -260,29 +263,57 @@ namespace FirstWebApp.App.Controllers
 
         // --------------------------------
 
-                    [Route("Usun/{id:int}")]
-                        public IActionResult Delete(int id)
-                        {
-                            AnimalEntity animal = new AnimalEntity() { IdAnimal = id };
+        public static int CorrectIdAnimal;
 
-                            _context.AnimalEntity.Remove(animal);
-                            _context.SaveChanges();
+        // GET: /Drzewa/Usun/5
+        [HttpGet]
+        [Route("Usun/{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            CorrectIdAnimal = id;
 
-                            return View();
-                        }
+            if (id == null || _context.AnimalEntity == null)
+            {
+                return NotFound("Error_1");
+            }
 
+            var animalEntity = await _context.AnimalEntity.FirstOrDefaultAsync(m => m.IdAnimal == id);
+            //tree.IdTree = id;
 
-                        /*[Route("DeleteConfirmed/{id:int}")]
-                        public IActionResult DeleteConfirmed(int id)
-                        {
-                            AnimalEntity animal = new AnimalEntity() { IdAnimal = id };
+            if (animalEntity == null)
+            {
+                return NotFound("Error_2");
+            }
 
+            return View(animalEntity);
+        }
 
-                            _context.AnimalEntity.Remove(animal);
-                            _context.SaveChanges();
+        // POST: /Drzewa/Usun/5
+        [HttpPost, ActionName("DeleteConfirmed")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed()
+        {
+            if (_context.AnimalEntity == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.AnimalEntity'  is null.");
+            }
 
-                            return RedirectToAction(nameof(Index));
-                        }*/
+            var animalEntity = await _context.AnimalEntity.FindAsync(CorrectIdAnimal);
+            if (animalEntity != null)
+            {
+                _context.AnimalEntity.Remove(animalEntity);
+            }
+            else
+            {
+                return NotFound("Error_5 ; Incorrect id: " + CorrectIdAnimal);
+            }
+
+ 
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
 
 
         // --------------------------------

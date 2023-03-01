@@ -42,8 +42,9 @@
             @Html.DisplayFor(model => model.MaxHeight)
         </dd>
     </dl>
+
     
-    <form asp-action="Delete">
+    <form asp-action="DeleteConfirmed" method="post">
         <input type="hidden" asp-for="IdTree" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>

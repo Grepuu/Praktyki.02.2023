@@ -13,10 +13,10 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateConfirmed">
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
+@*            <div class="form-group">
                 <label asp-for="IdAnimal" class="control-label"> Identyfikator Zwierzęcia </label>
                 <input asp-for="IdAnimal" class="form-control" id="IdAnimal" name="IdAnimal" />
                 <span asp-validation-for="IdAnimal" class="text-danger"></span>
@@ -28,7 +28,7 @@
                 <label asp-for="AnimalDateAdded" class="control-label"> Data Dodania</label>
                 <input asp-for="AnimalDateAdded" class="form-control" id="AnimalDateAdded" name="AnimalDateAdded" />
                 <span asp-validation-for="AnimalDateAdded" class="text-danger"></span>
-            </div>
+            </div>*@
 
             <br/>
 

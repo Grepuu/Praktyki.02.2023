@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.IdTree)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.TreeDateAdded)
             </th>
             <th>
@@ -33,6 +36,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTree)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TreeDateAdded)
             </td>

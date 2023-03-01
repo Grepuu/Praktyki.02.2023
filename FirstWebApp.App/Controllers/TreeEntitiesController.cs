@@ -49,6 +49,7 @@ namespace FirstWebApp.App.Controllers
         }
 
         // GET: /Drzewa/Dodaj
+        [HttpGet]
         [Route("Dodaj")]
         public IActionResult Create()
         {
@@ -57,11 +58,13 @@ namespace FirstWebApp.App.Controllers
 
         // POST: /Drzewa/Dodaj
         [HttpPost]
+        [Route("Dodaj")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTree,TreeDateAdded,TreeName,TreeDescription,LeafDescription,MaxHeight")] TreeEntity treeEntity)
+        public async Task<IActionResult> Create(TreeEntity treeEntity)
         {
             if (ModelState.IsValid)
             {
+                treeEntity.TreeDateAdded = DateTime.Now;
                 _context.Add(treeEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -70,6 +73,7 @@ namespace FirstWebApp.App.Controllers
         }
 
         // GET: /Drzewa/Edytuj/5
+        [HttpGet]
         [Route("Edytuj")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -88,13 +92,14 @@ namespace FirstWebApp.App.Controllers
 
         // POST: /Drzewa/Edytuj/5
         [HttpPost]
+        [Route("Edytuj")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdTree,TreeDateAdded,TreeName,TreeDescription,LeafDescription,MaxHeight")] TreeEntity treeEntity)
+        public async Task<IActionResult> Edit(int id, TreeEntity treeEntity)
         {
-            if (id != treeEntity.IdTree)
+/*            if (id != treeEntity.IdTree)
             {
                 return NotFound();
-            }
+            }*/
 
             if (ModelState.IsValid)
             {
@@ -119,43 +124,61 @@ namespace FirstWebApp.App.Controllers
             return View(treeEntity);
         }
 
+
+
+        public static int CorrectIdTree;
+
         // GET: /Drzewa/Usun/5
-        [Route("Usun")]
-        public async Task<IActionResult> Delete(int? id)
+        [HttpGet]
+        [Route("Usun/{id:int}")]
+        public async Task<IActionResult> Delete(int id)
         {
+            CorrectIdTree = id;
+
             if (id == null || _context.TreeEntity == null)
             {
-                return NotFound();
+                return NotFound("Error_1");
             }
 
-            var treeEntity = await _context.TreeEntity
-                .FirstOrDefaultAsync(m => m.IdTree == id);
+            var treeEntity = await _context.TreeEntity.FirstOrDefaultAsync(m => m.IdTree == id);
+            //tree.IdTree = id;
+
             if (treeEntity == null)
             {
-                return NotFound();
+                return NotFound("Error_2");
             }
 
             return View(treeEntity);
         }
 
         // POST: /Drzewa/Usun/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed()
         {
             if (_context.TreeEntity == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.TreeEntity'  is null.");
             }
-            var treeEntity = await _context.TreeEntity.FindAsync(id);
+
+            var treeEntity = await _context.TreeEntity.FindAsync(CorrectIdTree);
             if (treeEntity != null)
             {
                 _context.TreeEntity.Remove(treeEntity);
             }
-            
+            else
+            {
+                return NotFound("Error_5 ; "+ CorrectIdTree);
+            }
+
+            //_context.TreeEntity.Remove(tree);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+
 
         private bool TreeEntityExists(int id)
         {
