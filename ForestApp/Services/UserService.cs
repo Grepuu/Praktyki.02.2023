@@ -29,22 +29,22 @@ public class UserService : IUserService
     {
         var user = new IdentityUser { UserName = email, Email = email };
         
-        var roleExists = await _roleManager.RoleExistsAsync(roleName);
-        if (!roleExists)
-        {
-            var role = new IdentityRole("USER");
-            var result = await _roleManager.CreateAsync(role);
-            if (!result.Succeeded)
-            {
-                return result;
-            }
-        }
+        // var roleExists = await _roleManager.RoleExistsAsync(roleName);
+        // if (!roleExists)
+        // {
+        //     var role = new IdentityRole("USER");
+        //     var result = await _roleManager.CreateAsync(role);
+        //     if (!result.Succeeded)
+        //     {
+        //         return result;
+        //     }
+        // }
     
-        var assignRoleResult = await _userManager.AddToRoleAsync(user, roleName);
-        if (!assignRoleResult.Succeeded)
-        {
-            return assignRoleResult;
-        }
+        // var assignRoleResult = await _userManager.AddToRoleAsync(user, roleName);
+        // if (!assignRoleResult.Succeeded)
+        // {
+        //     return assignRoleResult;
+        // }
 
         return await _userManager.CreateAsync(user, password);
     }

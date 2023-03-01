@@ -11,6 +11,7 @@ public interface IForestRepository
     Task UpdateForest(ForestEntity forest);
     Task<ForestEntity?> GetForestById(int forestId);
     Task<List<ForestEntity>> GetAllForests();
+    Task<List<ForestEntity>> GetAllUserForests(string userId);
 }
 
 public class ForestRepository : IForestRepository
@@ -52,6 +53,16 @@ public class ForestRepository : IForestRepository
             .Include(f => f.Permissions)
             .Include(f => f.Animals)
             .FirstOrDefaultAsync(f => f.Id == forestId);
+    }
+    
+    public async Task<List<ForestEntity>> GetAllUserForests(string userId)
+    {
+        return await _dbContext.Forests
+            .Where(f => f.OwnerId == userId)
+            .Include(f => f.Trees)
+            .Include(f => f.Permissions)
+            .Include(f => f.Animals)
+            .ToListAsync();
     }
 
     public async Task<List<ForestEntity>> GetAllForests()

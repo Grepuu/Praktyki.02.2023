@@ -86,49 +86,31 @@ public class ForestController : Controller
         {
             return Forbid();
         }
-        
-        var treesDto = forest.Trees.Select(tree => new TreeDto()
-        {
-            Id = tree.Id,
-            DateAdded = tree.DateAdded,
-            Description = tree.Description,
-            Height = tree.Height,
-            LeafDescription = tree.LeafDescription,
-            Name = tree.Name,
-            forestId = forest.Id
-        }).ToList();
 
-        var animalsDto = forest.Animals.Select(animal => new AnimalDto()
+        return Ok(ForestEntity.ToForestDto(forest));
+    }
+    
+    [HttpGet("")]
+    [Authorize]
+    public async Task<IActionResult> GetAllUserForests()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (userId == null)
         {
-            Id = animal.Id,
-            DateAdded = animal.DateAdded,
-            Description = animal.Description,
-            Name = animal.Name,
-            IsEndangered = animal.IsEndangered,
-            HerdSize = animal.HerdSize,
-            ForestId = forest.Id,
-        }).ToList();
+            return Forbid();
+        }
         
-        var permissionsDto = forest.Permissions.Select(permission => new PermissionDto()
+        var forests = await _forestService.GetAllUserForests(userId);
+        var forestDtos = new List<ForestDto>();
+
+        foreach (var forest in forests)
         {
-            Id = permission.Id,
-            DateAdded = permission.DateAdded,
-            Description = permission.Description,
-            DateFrom = permission.DateFrom,
-            DateTo = permission.DateTo,
-            ForestId = forest.Id,
-        }).ToList();
-        
-        return Ok(new ForestDto()
-        {
-            Id = forest.Id,
-            Location = forest.Location,
-            Name = forest.Name,
-            OwnerId = forest.OwnerId,
-            Trees = treesDto,
-            Animals = animalsDto,
-            Permissions = permissionsDto
-        });
+            var forestDto = ForestEntity.ToForestDto(forest);
+            forestDtos.Add(forestDto);
+        }
+
+        return Ok(forestDtos);
     }
     
     [HttpPost("{forestId:int}/add-tree")]
@@ -226,6 +208,4 @@ public class ForestController : Controller
 
         return Ok();
     }
-    
-    
 }

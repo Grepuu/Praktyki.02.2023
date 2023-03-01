@@ -28,7 +28,7 @@ public class AuthController : Controller
             return BadRequest(ModelState);
         }
 
-        var result = await _userService.CreateUser(request.Email, request.Password, "ROLE_USER");
+        var result = await _userService.CreateUser(request.Email, request.Password, "USER");
 
         if (!result.Succeeded)
         {

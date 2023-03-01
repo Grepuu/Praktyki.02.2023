@@ -13,6 +13,7 @@ public interface IForestService
     Task<ForestEntity?> GetForestById(int forestId);
     Task<List<ForestEntity>> GetAllForests();
     Task<ForestEntity?> GetForestForUser(string userId, int forestId);
+    Task<List<ForestEntity>> GetAllUserForests(string userId);
     Task AddTreeToForest(int forestId, TreeEntity tree);
     Task AddAnimalToForest(int forestId, AnimalEntity animal);
     Task AddPermissionToForest(int forestId, PermissionEntity permission);
@@ -56,6 +57,11 @@ public class ForestService : IForestService
         }
 
         return forest;
+    }
+
+    public async Task<List<ForestEntity>> GetAllUserForests(string userId)
+    {
+        return await _forestRepository.GetAllUserForests(userId);
     }
 
     public async Task AddTreeToForest(int forestId, TreeEntity tree)
