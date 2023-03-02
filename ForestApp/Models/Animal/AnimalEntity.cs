@@ -12,4 +12,5 @@ public class AnimalEntity : IAnimal
     public bool IsEndangered { get; set; }
     
     public ForestEntity Forest { get; set; }
+    public int ForestId { get; set; }
 }
